@@ -11,7 +11,11 @@ Just star the repo or make a donation.
 
 Your help is valuable since this is a hobby project for all of us: we do development during out-of-office hours.
 
-### Setup
+### Class Construct
+
+![](/Screenshots/GeoInformationClass.png)
+
+### Usage
 * TBD
 
 ### Contribution
