@@ -16,7 +16,30 @@ Your help is valuable since this is a hobby project for all of us: we do develop
 ![](/Screenshots/GeoInformationClass.png)
 
 ### Usage (Code sample)
-```vbdotnet
+C#
+``` chsarp
+//Get IPv4
+string myIPv4 = ipifyWrapper.Ipify.GetPublicAddress();
+IPAddress myIPv4Address = ipifyWrapper.Ipify.GetPublicIPAddress();
+//Get IPv6
+string myIPv6 = ipifyWrapper.Ipify.GetPublicv6Address();
+IPAddress myIPv6Address = ipifyWrapper.Ipify.GetPublicIPv6Address();
+
+//Get Geolocation Information of an IP
+ipifyWrapper.Ipify.GeoIPLocation acc = new ipifyWrapper.Ipify.GeoIPLocation
+{
+	APIKey = "<YOUR-API-KEY>"
+};
+
+ipifyWrapper.Ipify.GeoIPLocation.IpifyGeoInformation ipInformation = acc.GetInformation("<QUERY IP>");
+//Get Geolocation Information of Type (ipAddress, email, domain)
+ipifyWrapper.Ipify.GeoIPLocation.IpifyGeoInformation ipInformationDomain = acc.GetInformation("<QUERY IP>", ipifyWrapper.Ipify.GeoIPLocation.QueryType.domain);
+ipifyWrapper.Ipify.GeoIPLocation.IpifyGeoInformation ipInformationEmail = acc.GetInformation("<QUERY IP>", ipifyWrapper.Ipify.GeoIPLocation.QueryType.email);
+ipifyWrapper.Ipify.GeoIPLocation.IpifyGeoInformation ipInformationIpAddress = acc.GetInformation("<QUERY IP>", ipifyWrapper.Ipify.GeoIPLocation.QueryType.ipAddress);
+```
+
+Visual Basic .NET
+``` visualbasic
 'Get IPv4
 Dim myIPv4 As String = ipifyWrapper.Ipify.GetPublicAddress()
 Dim myIPv4IP As IPAddress = ipifyWrapper.Ipify.GetPublicIPAddress()
