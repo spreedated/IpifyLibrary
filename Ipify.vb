@@ -37,10 +37,10 @@ Public Class Ipify
             domain
         End Enum
 
-        Public Function GetInformation(ByVal ipAddress As String, ByVal Optional [QueryType] As QueryType = QueryType.ipAddress) As IpifyGeoInformation
+        Public Function GetInformation(ByVal QueryValue As String, ByVal Optional [QueryType] As QueryType = QueryType.ipAddress) As IpifyGeoInformation
             Dim acc As IpifyGeoInformation = New IpifyGeoInformation
             Using wC As WebClient = New WebClient
-                acc = JsonConvert.DeserializeObject(Of IpifyGeoInformation)(wC.DownloadString(String.Format(ipifyAddress, APIKey, [Enum].GetName(GetType(QueryType), QueryType), ipAddress)))
+                acc = JsonConvert.DeserializeObject(Of IpifyGeoInformation)(wC.DownloadString(String.Format(ipifyAddress, APIKey, [Enum].GetName(GetType(QueryType), QueryType), QueryValue)))
             End Using
 
             Return acc
