@@ -28,9 +28,9 @@ Public Class Ipify
     End Function
 
     Public Class GeoIPLocation
-        Public Shared Property APIKey As String = Nothing
+        Public Property APIKey As String = Nothing
         Private Const ipifyAddress As String = "https://geo.ipify.org/api/v1?apiKey={0}&ipAddress={1}"
-        Public Shared Function GetInformation(ByVal ipAddress As String) As IpifyGeoInformation
+        Public Function GetInformation(ByVal ipAddress As String) As IpifyGeoInformation
             Dim acc As IpifyGeoInformation = New IpifyGeoInformation
             Using wC As WebClient = New WebClient
                 acc = JsonConvert.DeserializeObject(Of IpifyGeoInformation)(wC.DownloadString(String.Format(ipifyAddress, APIKey, ipAddress)))
