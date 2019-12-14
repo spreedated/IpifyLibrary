@@ -9,7 +9,7 @@
 					Get extern IPv4 and IPv6.
 					Query GeoLocation information with an API-Key.
 				</description>
-				<projectUrl>http://xunit.codeplex.com/</projectUrl>
+				<projectUrl>https://github.com/spreedated/IpifyLibrary</projectUrl>
 				<license type="expression">MIT</license>
 				<dependencies>
 						<dependency id="Newtonsoft.Json" version="12.0.3" />
