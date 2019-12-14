@@ -29,11 +29,18 @@ Public Class Ipify
 
     Public Class GeoIPLocation
         Public Property APIKey As String = Nothing
-        Private Const ipifyAddress As String = "https://geo.ipify.org/api/v1?apiKey={0}&ipAddress={1}"
-        Public Function GetInformation(ByVal ipAddress As String) As IpifyGeoInformation
+        Private Const ipifyAddress As String = "https://geo.ipify.org/api/v1?apiKey={0}&{1}={2}"
+
+        Public Enum QueryType
+            ipAddress
+            email
+            domain
+        End Enum
+
+        Public Function GetInformation(ByVal ipAddress As String, ByVal Optional [QueryType] As QueryType = QueryType.ipAddress) As IpifyGeoInformation
             Dim acc As IpifyGeoInformation = New IpifyGeoInformation
             Using wC As WebClient = New WebClient
-                acc = JsonConvert.DeserializeObject(Of IpifyGeoInformation)(wC.DownloadString(String.Format(ipifyAddress, APIKey, ipAddress)))
+                acc = JsonConvert.DeserializeObject(Of IpifyGeoInformation)(wC.DownloadString(String.Format(ipifyAddress, APIKey, [Enum].GetName(GetType(QueryType), QueryType), ipAddress)))
             End Using
 
             Return acc
