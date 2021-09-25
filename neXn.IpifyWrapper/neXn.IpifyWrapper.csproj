@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <TargetFrameworks>net472;net48;net5.0</TargetFrameworks>
-    <GeneratePackageOnBuild Condition ="'$(Configuration)' == 'Release'">True</GeneratePackageOnBuild>
+    <GeneratePackageOnBuild Condition="'$(Configuration)' == 'Release'">True</GeneratePackageOnBuild>
     <Version>2.0.0</Version>
     <Authors>Markus Karl Wackermann</Authors>
     <Company>neXn-Systems</Company>
@@ -13,10 +13,16 @@
     <RepositoryType>git</RepositoryType>
     <PackageTags>ipify wrapper nexn extern ipv4 geolocation</PackageTags>
     <PackageReleaseNotes>Complete rework &amp; cleanup</PackageReleaseNotes>
+    <SignAssembly>True</SignAssembly>
+    <AssemblyOriginatorKeyFile>wackermann.snk</AssemblyOriginatorKeyFile>
   </PropertyGroup>
 
   <ItemGroup>
     <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Condition="'$(TargetFramework)' != 'net5.0'" Include="System.Net.Http" />
   </ItemGroup>
 
 </Project>
