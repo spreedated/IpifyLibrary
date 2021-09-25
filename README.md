@@ -16,45 +16,19 @@ Your help is valuable since this is a hobby project for all of us: we do develop
 ![](/Screenshots/GeoInformationClass.png)
 
 ### Usage (Code sample)
-C#
-``` chsarp
+```csharp
 //Get IPv4
-string myIPv4 = ipifyWrapper.Ipify.GetPublicAddress();
-IPAddress myIPv4Address = ipifyWrapper.Ipify.GetPublicIPAddress();
+string myIPv4 = Ipify.GetPublicAddress();
+IPAddress myIPv4Address = Ipify.GetPublicIPAddress()();
 //Get IPv6
-string myIPv6 = ipifyWrapper.Ipify.GetPublicv6Address();
-IPAddress myIPv6Address = ipifyWrapper.Ipify.GetPublicIPv6Address();
+string myIPv6 = Ipify.GetPublicv6Address();
+IPAddress myIPv6Address = Ipify.GetPublicIPv6Address();
 
 //Get Geolocation Information of an IP
-ipifyWrapper.Ipify.GeoIPLocation acc = new ipifyWrapper.Ipify.GeoIPLocation
-{
-	APIKey = "<YOUR-API-KEY>"
-};
+GeoIPLocation g = new("<yourAPIKeyHere>")
 
 ipifyWrapper.Ipify.GeoIPLocation.IpifyGeoInformation ipInformation = acc.GetInformation("<QUERY IP>");
-//Get Geolocation Information of Type (ipAddress, email, domain)
-ipifyWrapper.Ipify.GeoIPLocation.IpifyGeoInformation ipInformationDomain = acc.GetInformation("<QUERY IP>", ipifyWrapper.Ipify.GeoIPLocation.QueryType.domain);
-ipifyWrapper.Ipify.GeoIPLocation.IpifyGeoInformation ipInformationEmail = acc.GetInformation("<QUERY IP>", ipifyWrapper.Ipify.GeoIPLocation.QueryType.email);
-ipifyWrapper.Ipify.GeoIPLocation.IpifyGeoInformation ipInformationIpAddress = acc.GetInformation("<QUERY IP>", ipifyWrapper.Ipify.GeoIPLocation.QueryType.ipAddress);
-```
-
-Visual Basic .NET
-``` visualbasic
-'Get IPv4
-Dim myIPv4 As String = ipifyWrapper.Ipify.GetPublicAddress()
-Dim myIPv4IP As IPAddress = ipifyWrapper.Ipify.GetPublicIPAddress()
-'Get IPv6
-Dim myIPv6 As String = ipifyWrapper.Ipify.GetPublicv6Address()
-Dim myIPv6IP As IPAddress = ipifyWrapper.Ipify.GetPublicIPv6Address()
-
-'Get Geolocation Information of an IP
-Dim acc As ipifyWrapper.Ipify.GeoIPLocation = New ipifyWrapper.Ipify.GeoIPLocation With {.APIKey = "<YOUR-API-KEY>"}
-
-Dim ipInformation As ipifyWrapper.Ipify.GeoIPLocation.IpifyGeoInformation = acc.GetInformation("<QUERY IP>")
-'Get Geolocation Information of Type (ipAddress, email, domain)
-Dim ipInformationDomain As ipifyWrapper.Ipify.GeoIPLocation.IpifyGeoInformation = acc.GetInformation("<QUERY IP>", ipifyWrapper.Ipify.GeoIPLocation.QueryType.domain)
-Dim ipInformationEmail As ipifyWrapper.Ipify.GeoIPLocation.IpifyGeoInformation = acc.GetInformation("<QUERY IP>", ipifyWrapper.Ipify.GeoIPLocation.QueryType.email)
-Dim ipInformationipAddress As ipifyWrapper.Ipify.GeoIPLocation.IpifyGeoInformation = acc.GetInformation("<QUERY IP>", ipifyWrapper.Ipify.GeoIPLocation.QueryType.ipAddress)
+var response = g.Get("46.114.106.243", GeoIPLocation.QueryType.IP_Address);
 ```
 
 ### Contribution
