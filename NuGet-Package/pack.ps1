@@ -1,1 +1,0 @@
-.\nuget5.3.1.exe pack ipifyNuget.nuspec -properties Configuration=Release
