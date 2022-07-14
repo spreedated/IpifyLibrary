@@ -1,10 +1,8 @@
 ﻿using System.Net;
-using System.Net.Http;
-using System.Threading.Tasks;
 
 namespace neXn.IpifyWrapper
 {
-    public class Ipify
+    internal static class Ipify
     {
         internal const string ipifyAdress = "http://api.ipify.org";
         internal const string ipifyAdressSecure = "https://api.ipify.org";

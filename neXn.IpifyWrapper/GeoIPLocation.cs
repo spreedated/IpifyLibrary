@@ -1,8 +1,8 @@
 ﻿using Newtonsoft.Json;
+using neXn.IpifyWrapper.Attributes;
 using neXn.IpifyWrapper.Models;
 using System;
 using System.Linq;
-using neXn.IpifyWrapper.Attributes;
 
 namespace neXn.IpifyWrapper
 {
