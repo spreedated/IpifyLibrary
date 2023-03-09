@@ -1,23 +1,11 @@
 ﻿using System.Net;
+using static neXn.IpifyWrapper.Constants;
+using static neXn.IpifyWrapper.Logic.HelperFunctions;
 
 namespace neXn.IpifyWrapper
 {
     internal static class Ipify
     {
-        internal const string ipifyAdress = "http://api.ipify.org";
-        internal const string ipifyAdressSecure = "https://api.ipify.org";
-        internal const string ipifyAdressv6 = "http://api6.ipify.org";
-        internal const string ipifyAdressv6Secure = "https://api6.ipify.org";
-
-        /// <summary>
-        /// Get public IPv4 Address as System.Net.IPAddress
-        /// </summary>
-        /// <param name="useHttps">Using SSL path of ipify.org (HTTPS)</param>
-        /// <returns>System.Net.IPAddress</returns>
-        public static IPAddress GetPublicIPAddress(bool useHttps = true)
-        {
-            return IPAddress.Parse(Download.IpifiyString(useHttps ? ipifyAdressSecure : ipifyAdress));
-        }
         /// <summary>
         /// Get public IPv4 Address as String
         /// </summary>
@@ -27,6 +15,17 @@ namespace neXn.IpifyWrapper
         {
             return GetPublicIPAddress(useHttps).ToString();
         }
+
+        /// <summary>
+        /// Get public IPv4 Address as System.Net.IPAddress
+        /// </summary>
+        /// <param name="useHttps">Using SSL path of ipify.org (HTTPS)</param>
+        /// <returns>System.Net.IPAddress</returns>
+        public static IPAddress GetPublicIPAddress(bool useHttps = true)
+        {
+            return IPAddress.Parse(IpifiyString(useHttps ? IPIFYADRESSSECURE : IPIFYADRESS));
+        }
+
         /// <summary>
         /// Get public IPv6 Address as System.Net.IPAddress
         /// </summary>
@@ -34,8 +33,9 @@ namespace neXn.IpifyWrapper
         /// <returns>System.Net.IPAddress</returns>
         public static IPAddress GetPublicIPv6Address(bool useHttps = true)
         {
-            return IPAddress.Parse(Download.IpifiyString(useHttps ? ipifyAdressv6Secure : ipifyAdressv6));
+            return IPAddress.Parse(IpifiyString(useHttps ? IPIFYADRESSV6SECURE : IPIFYADRESSV6));
         }
+
         /// <summary>
         /// Get public IPv6 Address as String
         /// </summary>

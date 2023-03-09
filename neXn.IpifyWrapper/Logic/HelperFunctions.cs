@@ -1,8 +1,8 @@
 ﻿using System.Net.Http;
 
-namespace neXn.IpifyWrapper
+namespace neXn.IpifyWrapper.Logic
 {
-    internal static class Download
+    internal static class HelperFunctions
     {
         internal static string IpifiyString(string addr)
         {
