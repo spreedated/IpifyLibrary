@@ -1,4 +1,5 @@
 ﻿using System.Net.Http;
+using static neXn.IpifyWrapper.Constants;
 
 namespace neXn.IpifyWrapper.Logic
 {
@@ -10,11 +11,16 @@ namespace neXn.IpifyWrapper.Logic
             {
                 //Fake that we are a real browser
                 hc.DefaultRequestHeaders.TryAddWithoutValidation("Accept", "text/html,application/xhtml+xml,application/xml");
-                hc.DefaultRequestHeaders.TryAddWithoutValidation("User-Agent", "Mozilla/5.0 (Windows NT 6.2; WOW64; rv:19.0) Gecko/20100101 Firefox/19.0");
+                hc.DefaultRequestHeaders.TryAddWithoutValidation("User-Agent", "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.0.0 Safari/537.36");
                 hc.DefaultRequestHeaders.TryAddWithoutValidation("Accept-Charset", "ISO-8859-1");
 
                 return hc.GetStringAsync(addr).Result;
             }
+        }
+
+        internal static string GetFormattedGeoAddress(string apikey, string identifier, string value)
+        {
+            return string.Format(IPIFYGEOADDRESS, apikey, identifier, value);
         }
     }
 }
