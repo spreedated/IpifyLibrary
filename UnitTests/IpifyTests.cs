@@ -26,6 +26,7 @@ namespace UnitTests
             Assert.IsTrue(Regex.IsMatch(Ipify.GetPublicv6Address(), validateIPv6RegEx));
             Assert.IsTrue(Regex.IsMatch(Ipify.GetPublicIPv6Address().ToString(), validateIPv6RegEx));
         }
+
         [Test(Description = "Need Internet Connection")]
         [Ignore("Provide API Key")]
         public void GeoLocation()
