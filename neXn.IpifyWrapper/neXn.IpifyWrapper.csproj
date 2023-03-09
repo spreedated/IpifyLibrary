@@ -1,12 +1,11 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFrameworks>net472;net48;net6.0</TargetFrameworks>
-    <GeneratePackageOnBuild Condition="'$(Configuration)' == 'Release'">True</GeneratePackageOnBuild>
-    <Version>2.1.0</Version>
+    <TargetFrameworks>net6.0;net472;net48</TargetFrameworks>
+    <Version>3.0.0</Version>
     <Authors>Markus Karl Wackermann</Authors>
     <Company>neXn-Systems</Company>
-    <Copyright>2019-2022 © Markus Karl Wackermann</Copyright>
+    <Copyright>2019-2023 © Markus Karl Wackermann</Copyright>
     <Description>An easy to use library/wrapper/api-link library for your .NET projects.</Description>
     <PackageProjectUrl>https://github.com/spreedated/IpifyLibrary</PackageProjectUrl>
     <RepositoryUrl>https://github.com/spreedated/IpifyLibrary</RepositoryUrl>
@@ -15,6 +14,16 @@
     <PackageReleaseNotes>Complete rework &amp; cleanup</PackageReleaseNotes>
     <SignAssembly>True</SignAssembly>
     <AssemblyOriginatorKeyFile>wackermann.snk</AssemblyOriginatorKeyFile>
+    <PublishReadyToRun>true</PublishReadyToRun>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <NoWarn>1701;1702</NoWarn>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <NoWarn>1701;1702</NoWarn>
+    <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
   </PropertyGroup>
 
   <ItemGroup>
