@@ -3,6 +3,7 @@ using neXn.IpifyWrapper.Attributes;
 using neXn.IpifyWrapper.Models;
 using System;
 using System.Linq;
+using static neXn.IpifyWrapper.Logic.HelperFunctions;
 
 namespace neXn.IpifyWrapper
 {
@@ -12,12 +13,6 @@ namespace neXn.IpifyWrapper
     /// </summary>
     public class GeoIPLocation
     {
-        /// <summary>
-        /// Main Class of Geolocation Informmation <br/>
-        /// Instance this with APIKey as String
-        /// </summary>
-        /// <returns></returns>
-        public string APIKey { get; internal set; }
         public enum QueryType
         {
             [QueryName("ipAddress")]
@@ -28,7 +23,12 @@ namespace neXn.IpifyWrapper
             Domain
         }
 
-        private const string ipifyAddress = "https://geo.ipify.org/api/v1?apiKey={0}&{1}={2}";
+        /// <summary>
+        /// Main Class of Geolocation Informmation <br/>
+        /// Instance this with APIKey as String
+        /// </summary>
+        /// <returns></returns>
+        public string APIKey { get; internal set; }
 
         #region Constructor
         public GeoIPLocation(string apiKey)
@@ -45,8 +45,8 @@ namespace neXn.IpifyWrapper
         /// <returns></returns>
         public IpifyGeoInformation Get(string queryValue, QueryType queryType = QueryType.IP_Address)
         {
-            string ipifyIdentifier = typeof(QueryType).GetField(Enum.GetName(typeof(QueryType), queryType)).GetCustomAttributes(false).OfType<QueryNameAttribute>().SingleOrDefault().name;
-            return JsonConvert.DeserializeObject<IpifyGeoInformation>(Download.IpifiyString(string.Format(ipifyAddress, APIKey, ipifyIdentifier, queryValue)));
+            string ipifyIdentifier = typeof(QueryType).GetField(Enum.GetName(typeof(QueryType), queryType)).GetCustomAttributes(false).OfType<QueryNameAttribute>().SingleOrDefault()?.Name;
+            return JsonConvert.DeserializeObject<IpifyGeoInformation>(IpifiyString(GetFormattedGeoAddress(this.APIKey, ipifyIdentifier, queryValue)));
         }
     }
 }
