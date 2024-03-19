@@ -19,12 +19,12 @@ namespace UnitTests
         public void StaticIPv4_6()
         {
             //IPv4
-            Assert.IsTrue(Regex.IsMatch(Ipify.GetPublicAddress(), VALIDATEIPV4REGEX));
-            Assert.IsTrue(Regex.IsMatch(Ipify.GetPublicIPAddress().ToString(), VALIDATEIPV4REGEX));
+            Assert.That(Regex.IsMatch(Ipify.GetPublicAddress(), VALIDATEIPV4REGEX), Is.True);
+            Assert.That(Regex.IsMatch(Ipify.GetPublicIPAddress().ToString(), VALIDATEIPV4REGEX), Is.True);
 
             //IPv6
-            Assert.IsTrue(Regex.IsMatch(Ipify.GetPublicv6Address(), VALIDATEIPV6REGEX));
-            Assert.IsTrue(Regex.IsMatch(Ipify.GetPublicIPv6Address().ToString(), VALIDATEIPV6REGEX));
+            Assert.That(Regex.IsMatch(Ipify.GetPublicv6Address(), VALIDATEIPV6REGEX), Is.True);
+            Assert.That(Regex.IsMatch(Ipify.GetPublicIPv6Address().ToString(), VALIDATEIPV6REGEX), Is.True);
         }
 
         [Test(Description = "Need Internet Connection")]
@@ -35,7 +35,15 @@ namespace UnitTests
             IpifyGeoInformation u = null;
 
             Assert.DoesNotThrow(() => { g.Get("46.114.106.243", GeoIPLocation.QueryType.IP_Address); });
-            Assert.IsNotNull(u);
+            Assert.That(u, Is.Not.Null);
+        }
+
+        [Test]
+        public void FormatTests()
+        {
+            string t = string.Format(neXn.IpifyWrapper.Constants.IPIFYGEOADDRESS, "hello", "world", "one");
+            Assert.That(t, Is.EqualTo("https://geo.ipify.org/api/v1?apiKey=hello&world=one"));
+            Assert.That(neXn.IpifyWrapper.Logic.HelperFunctions.GetFormattedGeoAddress("hello", "world", "one"), Is.EqualTo("https://geo.ipify.org/api/v1?apiKey=hello&world=one"));
         }
 
         [TearDown]

@@ -23,7 +23,7 @@ namespace neXn.IpifyWrapper
         /// <returns>System.Net.IPAddress</returns>
         public static IPAddress GetPublicIPAddress(bool useHttps = true)
         {
-            return IPAddress.Parse(IpifiyString(useHttps ? IPIFYADRESSSECURE : IPIFYADRESS));
+            return IPAddress.Parse(IpifiyString(useHttps ? IPIFYADDRESSSECURE : IPIFYADDRESS));
         }
 
         /// <summary>
@@ -33,7 +33,7 @@ namespace neXn.IpifyWrapper
         /// <returns>System.Net.IPAddress</returns>
         public static IPAddress GetPublicIPv6Address(bool useHttps = true)
         {
-            return IPAddress.Parse(IpifiyString(useHttps ? IPIFYADRESSV6SECURE : IPIFYADRESSV6));
+            return IPAddress.Parse(IpifiyString(useHttps ? IPIFYADDRESSV6SECURE : IPIFYADDRESSV6));
         }
 
         /// <summary>
