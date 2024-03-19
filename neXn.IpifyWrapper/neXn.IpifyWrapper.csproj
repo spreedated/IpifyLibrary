@@ -14,7 +14,6 @@
     <PackageReleaseNotes>Complete rework &amp; cleanup</PackageReleaseNotes>
     <SignAssembly>True</SignAssembly>
     <AssemblyOriginatorKeyFile>wackermann.snk</AssemblyOriginatorKeyFile>
-    <PublishReadyToRun>true</PublishReadyToRun>
     <NoWarn>1701;1702</NoWarn>
     <GeneratePackageOnBuild Condition="'$(Configuration)'=='Release'">True</GeneratePackageOnBuild>
     <LangVersion>latest</LangVersion>
