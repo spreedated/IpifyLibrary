@@ -1,10 +1,10 @@
-[![Donate](https://img.shields.io/badge/Donate-PayPal-green.svg)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=35WE5NU48AUMA&source=url)
-
 [![NuGet](https://img.shields.io/nuget/v/neXn.Ipify?style=flat-square&logo=nuget&label=NuGet)](https://www.nuget.org/packages/neXn.Ipify)
 [![NuGet Downloads](https://img.shields.io/nuget/dt/neXn.Ipify?style=flat-square&logo=nuget&label=Downloads)](https://www.nuget.org/packages/neXn.Ipify)
 ![.NET](https://img.shields.io/badge/.NET-10.0-512BD4?style=flat-square&logo=dotnet)
 ![C#](https://img.shields.io/badge/C%23-13-512BD4?style=flat-square&logo=csharp)
 [![License](https://img.shields.io/github/license/spreedated/IpifyLibrary?style=flat-square)](https://github.com/spreedated/IpifyLibrary/blob/master/LICENSE)
+
+[!["Buy Me A Coffee"](https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png)](https://buymeacoffee.com/spreed)
 
 neXn.Ipify
 ---
@@ -83,3 +83,5 @@ Licensed under the [MIT License](LICENSE).
 ## Disclaimer
 
 This is an independent open-source project and is not affiliated with, endorsed by, or sponsored by ipify.
+
+[!["Buy Me A Coffee"](https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png)](https://buymeacoffee.com/spreed)
