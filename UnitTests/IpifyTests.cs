@@ -1,55 +1,59 @@
-using neXn.IpifyWrapper;
-using neXn.IpifyWrapper.Models;
+using neXn.Ipify;
 using NUnit.Framework;
-using System.Text.RegularExpressions;
-using static UnitTests.Constants;
+using RichardSzalay.MockHttp;
+using System.Net;
 
 namespace UnitTests
 {
     public class IpifyTests
     {
-        [SetUp]
-        public void SetUp()
+        [Test]
+        [TestCase("{\"ip\":\"127.0.0.1\"}")]
+        [TestCase("{\"ip\":\"2001:0000:130F:0000:0000:09C0:876A:130B\"}")]
+        public void RetrieveIpSuccessTests(string queryResponse)
         {
+            MockHttpMessageHandler mockHttp = new();
+            mockHttp.When(Constants.IPIFY_URL_UNIVERSAL).Respond(HttpStatusCode.OK, "application/json", queryResponse);
 
+            IpifyClient ip = new()
+            {
+                _client = new(mockHttp)
+            };
+
+            IPAddress response = null;
+
+            Assert.DoesNotThrowAsync(async () =>
+            {
+                response = await ip.GetPublicIPAddressAsync();
+            });
+
+            Assert.That(response, Is.Not.Null);
+            Assert.That(response, Is.InstanceOf<IPAddress>());
+            Assert.That(PreCompiledRegex.ValidateIp4().IsMatch(response.ToString()) || PreCompiledRegex.ValidateIp6().IsMatch(response.ToString()), Is.True);
         }
 
         [Test]
-        [Ignore("Need Internet Connection")]
-        public void StaticIPv4_6()
+        [TestCase(HttpStatusCode.BadGateway, "error")]
+        [TestCase(HttpStatusCode.OK, "{}")]
+        [TestCase(HttpStatusCode.OK, "")]
+        public void RetrieveIpFailTests(HttpStatusCode httpResponseCode, string httpResponse)
         {
-            //IPv4
-            Assert.That(Regex.IsMatch(Ipify.GetPublicAddress(), VALIDATEIPV4REGEX), Is.True);
-            Assert.That(Regex.IsMatch(Ipify.GetPublicIPAddress().ToString(), VALIDATEIPV4REGEX), Is.True);
+            MockHttpMessageHandler mockHttp = new();
+            mockHttp.When(Constants.IPIFY_URL_UNIVERSAL).Respond(httpResponseCode, "application/json", httpResponse);
 
-            //IPv6
-            Assert.That(Regex.IsMatch(Ipify.GetPublicv6Address(), VALIDATEIPV6REGEX), Is.True);
-            Assert.That(Regex.IsMatch(Ipify.GetPublicIPv6Address().ToString(), VALIDATEIPV6REGEX), Is.True);
-        }
+            IpifyClient ip = new()
+            {
+                _client = new(mockHttp)
+            };
 
-        [Test(Description = "Need Internet Connection")]
-        [Ignore("Provide API Key")]
-        public void GeoLocation()
-        {
-            GeoIPLocation g = new("<yourAPIKeyHere>");
-            IpifyGeoInformation u = null;
+            IPAddress response = null;
 
-            Assert.DoesNotThrow(() => { g.Get("46.114.106.243", GeoIPLocation.QueryType.IP_Address); });
-            Assert.That(u, Is.Not.Null);
-        }
+            Assert.DoesNotThrowAsync(async () =>
+            {
+                response = await ip.GetPublicIPAddressAsync();
+            });
 
-        [Test]
-        public void FormatTests()
-        {
-            string t = string.Format(neXn.IpifyWrapper.Constants.IPIFYGEOADDRESS, "hello", "world", "one");
-            Assert.That(t, Is.EqualTo("https://geo.ipify.org/api/v1?apiKey=hello&world=one"));
-            Assert.That(neXn.IpifyWrapper.Logic.HelperFunctions.GetFormattedGeoAddress("hello", "world", "one"), Is.EqualTo("https://geo.ipify.org/api/v1?apiKey=hello&world=one"));
-        }
-
-        [TearDown]
-        public void TearDown()
-        {
-
+            Assert.That(response, Is.Null);
         }
     }
 }
